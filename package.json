@@ -1,0 +1,27 @@
+{
+  "name": "ceres-poc",
+  "version": "0.0.1",
+  "description": "Szolgáltatás busz Proof-of-Concept NodeJS alapokon",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=dev && CONFIG=gw-client-config nodemon gw-client.js & CONFIG=gw-service-config nodemon gw-client.js & nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanioinformatika/ceres-poc.git"
+  },
+  "author": "Pató István <istvan.pato@vanio.hu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vanioinformatika/ceres-poc/issues"
+  },
+  "homepage": "https://github.com/vanioinformatika/ceres-poc#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "fetch": "^1.0.1",
+    "nodemon": "^1.9.2",
+    "request": "^2.72.0",
+    "standard": "^7.0.0",
+    "uuid": "^2.0.2"
+  }
+}
