@@ -18,7 +18,7 @@ app.get('/service/person/:id', (req, res) => {
 
   res.set({
     'x-service-instance-id': 'instance_id_of_the_service_app',
-    'x-service-name': 'service_name',
+    'x-service-name': 'MY_SERVICE_NAME',
     'x-request-id': req.get('x-request-id'),
     'x-gw-client-id': req.get('x-gw-client-id'),
     'x-gw-service-id': req.get('x-gw-service-id')
