@@ -4,7 +4,7 @@
   "description": "Szolgáltatás busz Proof-of-Concept NodeJS alapokon",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=dev && CONFIG=gw-client-config nodemon gw-client.js & CONFIG=gw-service-config nodemon gw-client.js & nodemon server.js"
+    "start": "NODE_ENV=dev && CONFIG=gw-client-config nodemon gateway.js & CONFIG=gw-service-config nodemon gateway.js & nodemon server.js"
   },
   "repository": {
     "type": "git",

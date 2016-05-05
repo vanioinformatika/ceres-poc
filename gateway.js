@@ -10,13 +10,21 @@ const env = process.env.NODE_ENV
 // security
 app.disable('x-powered-by')
 
-app.get('/service/person/:id', function (req, res) {
+app.get('/service/person/:id', (req, res) => {
   console.log('gatewayId: ' + config.id)
-  console.log('req.headers: ', req.headers)
+  console.log('gw req.headers: ', req.headers)
 
   let options = {
     url: config.req.url + req.params.id,
     headers: {}
+  }
+
+  // x-client-* headers specified by client request
+  // copy x-client-* headers
+  for (let key in req.headers) {
+    if (key.startsWith('x-client-')) {
+      options.headers[key] = req.headers[key]
+    }
   }
 
   const clientGatewayId = req.get('x-gw-client-id') || config.id
@@ -31,11 +39,19 @@ app.get('/service/person/:id', function (req, res) {
   options.headers['x-request-id'] = requestId
   options.headers['x-gw-client-id'] = clientGatewayId
 
-  res.set({
+  // put back request headers into response
+  let responseHeaders = {
     'x-request-id': requestId,
     'x-gw-client-id': clientGatewayId,
     'x-gw-service-id': serviceGatewayId
-  })
+  }
+  for (let key in req.headers) {
+    if (key.startsWith('x-client-')) {
+      responseHeaders[key] = req.headers[key]
+    }
+  }
+
+  res.set(responseHeaders)
 
   request(options,
     (error, response, body) => {

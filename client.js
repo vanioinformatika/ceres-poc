@@ -1,17 +1,23 @@
 'use strict'
 
-const fetch = require('node-fetch')
+const request = require('request')
 
-fetch('http://localhost:18080/service/person/123456789')
-  .then(function (res) {
-    return res.headers.raw()
-  })
-  .then(function (val) {
-    console.log(val)
-  })
+// client specific headers: x-client-*
+let options = {
+  url: 'http://localhost:18080/service/person/' + '17001010000',
+  headers: {
+    'x-client-id': 'specified_by_client',
+    'x-client-name': 'MY_CLIENT',
+    'cache-control': 'no-cache'
+  }
+}
 
-  // cache-control: no-cache
-  // x-gw-request-id
-  // x-request-id
-  // x-served-by
-  // x-runtime
+request(options,
+  (error, response, body) => {
+    if (!error && response.statusCode == 200) {
+      console.log('response.headers: ', response.headers)
+      console.log('response.body: ', body)
+    } else {
+      console.log(error)
+    }
+  })

@@ -12,12 +12,13 @@ const person = {
   'birthplace': 'Hungary, Budapest'
 }
 
-app.get('/service/person/:id', function (req, res) {
-  console.log('req sender (service) gw id: ' + req.get('x-gw-service-id'))
+app.get('/service/person/:id', (req, res) => {
   console.log('requested resource id: ' + req.params.id)
-  console.log('request.headers: ', req.headers)
+  console.log('service request.headers: ', req.headers)
 
   res.set({
+    'x-service-instance-id': 'instance_id_of_the_service_app',
+    'x-service-name': 'service_name',
     'x-request-id': req.get('x-request-id'),
     'x-gw-client-id': req.get('x-gw-client-id'),
     'x-gw-service-id': req.get('x-gw-service-id')
