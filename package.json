@@ -18,7 +18,6 @@
   "homepage": "https://github.com/vanioinformatika/ceres-poc#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "fetch": "^1.0.1",
     "nodemon": "^1.9.2",
     "request": "^2.72.0",
     "standard": "^7.0.0",
